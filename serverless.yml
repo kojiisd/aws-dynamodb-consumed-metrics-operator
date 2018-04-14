@@ -1,0 +1,11 @@
+service: aws-dynamodb-consumed-metrics-operator
+
+
+
+provider:
+  name: aws
+  runtime: python3.6
+
+functions:
+  run:
+    handler: handler.run
