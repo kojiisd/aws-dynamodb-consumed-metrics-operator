@@ -1,5 +1,6 @@
 import sys
 import json
+import datetime
 
 from decimal import Decimal
 from time import sleep
@@ -27,9 +28,13 @@ if __name__ == "__main__":
     
     sleep_time = Decimal(1) / Decimal(args[5])
     while True:
+      now_iso = datetime.datetime.now()
       res = table.query(
-          KeyConditionExpression=Key('id').eq(args[3])
+          KeyConditionExpression=Key('id').eq(args[3]) & Key('timestamp').between(str((now_iso - datetime.timedelta(minutes=5)).isoformat()),  str((now_iso.isoformat())))
       )
+
+      print(len(str(res)))
+    #   print(res)
 
       return_response = max(res["Items"], key=(lambda x: x[args[4]]))
 
