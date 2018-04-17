@@ -9,3 +9,6 @@ provider:
 functions:
   run:
     handler: handler.run
+    environment:
+      THRESHOLD_VALUE: 0.5
+      THRESHOLD_TIME: 5
